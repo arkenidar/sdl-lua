@@ -1,0 +1,28 @@
+{
+    "version": "0.2.0",
+    // tomblind.local-lua-debugger-vscode extension
+    "configurations": [
+        {
+            "name": "app01 - Lua Console",
+            "request": "launch",
+            "type": "lua-local",
+            "program": {
+                "command": "${workspaceFolder}/sdl-lua-console.exe"
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}/apps/app01",
+            "stopOnEntry": false
+        },
+        {
+            "name": "app02 - Lua Console",
+            "request": "launch",
+            "type": "lua-local",
+            "program": {
+                "command": "${workspaceFolder}/sdl-lua-console.exe"
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}/apps/app02",
+            "stopOnEntry": false
+        }
+    ]
+}
