@@ -1,1 +1,6 @@
+# cmake
 /build
+
+# CLion
+/.idea
+/cmake-build-*
