@@ -23,6 +23,32 @@
             "args": [],
             "cwd": "${workspaceFolder}/apps/app02",
             "stopOnEntry": false
+        },
+        {
+            "name": "[wine] app01 - Lua Console",
+            "request": "launch",
+            "type": "lua-local",
+            "program": {
+                "command": "wine"
+            },
+            "args": [
+                "${workspaceFolder}/sdl-lua-console.exe"
+            ],
+            "cwd": "${workspaceFolder}/apps/app01",
+            "stopOnEntry": false
+        },
+        {
+            "name": "[wine] app02 - Lua Console",
+            "request": "launch",
+            "type": "lua-local",
+            "program": {
+                "command": "wine"
+            },
+            "args": [
+                "${workspaceFolder}/sdl-lua-console.exe"
+            ],
+            "cwd": "${workspaceFolder}/apps/app02",
+            "stopOnEntry": false
         }
     ]
 }
