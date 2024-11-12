@@ -3,7 +3,29 @@
     // tomblind.local-lua-debugger-vscode extension
     "configurations": [
         {
-            "name": "app01 - Lua Console",
+            "name": "[cmake-build] app01 - Lua Console",
+            "request": "launch",
+            "type": "lua-local",
+            "program": {
+                "command": "${workspaceFolder}/build/sdl"
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}/apps/app01",
+            "stopOnEntry": false
+        },
+        {
+            "name": "[cmake-build] app02 - Lua Console",
+            "request": "launch",
+            "type": "lua-local",
+            "program": {
+                "command": "${workspaceFolder}/build/sdl"
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}/apps/app02",
+            "stopOnEntry": false
+        },
+        {
+            "name": "[exe-win] app01 - Lua Console",
             "request": "launch",
             "type": "lua-local",
             "program": {
@@ -14,7 +36,7 @@
             "stopOnEntry": false
         },
         {
-            "name": "app02 - Lua Console",
+            "name": "[exe-win] app02 - Lua Console",
             "request": "launch",
             "type": "lua-local",
             "program": {
@@ -25,7 +47,7 @@
             "stopOnEntry": false
         },
         {
-            "name": "[wine] app01 - Lua Console",
+            "name": "[wine-emu] app01 - Lua Console",
             "request": "launch",
             "type": "lua-local",
             "program": {
@@ -38,7 +60,7 @@
             "stopOnEntry": false
         },
         {
-            "name": "[wine] app02 - Lua Console",
+            "name": "[wine-emu] app02 - Lua Console",
             "request": "launch",
             "type": "lua-local",
             "program": {
