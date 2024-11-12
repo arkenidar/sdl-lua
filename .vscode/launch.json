@@ -3,34 +3,6 @@
     // tomblind.local-lua-debugger-vscode extension
     "configurations": [
         {
-            "name": "[cmake-build] app01 - Lua Console",
-            "request": "launch",
-            "type": "lua-local",
-            "program": {
-                "command": "${workspaceFolder}/build/sdl"
-            },
-            "args": [],
-            "cwd": "${workspaceFolder}/apps/app01",
-            "stopOnEntry": false,
-            "env": {
-                "PATH": "${env:PATH};${workspaceFolder};"
-            }
-        },
-        {
-            "name": "[cmake-build] app02 - Lua Console",
-            "request": "launch",
-            "type": "lua-local",
-            "program": {
-                "command": "${workspaceFolder}/build/sdl"
-            },
-            "args": [],
-            "cwd": "${workspaceFolder}/apps/app02",
-            "stopOnEntry": false,
-            "env": {
-                "PATH": "${env:PATH};${workspaceFolder};"
-            }
-        },
-        {
             "name": "[exe-win] app01 - Lua Console",
             "request": "launch",
             "type": "lua-local",
@@ -77,6 +49,34 @@
             ],
             "cwd": "${workspaceFolder}/apps/app02",
             "stopOnEntry": false
+        },
+        {
+            "name": "[cmake-build] app01 - Lua Console",
+            "request": "launch",
+            "type": "lua-local",
+            "program": {
+                "command": "${workspaceFolder}/build/sdl"
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}/apps/app01",
+            "stopOnEntry": false,
+            "env": {
+                "PATH": "${env:PATH};${workspaceFolder};"
+            }
+        },
+        {
+            "name": "[cmake-build] app02 - Lua Console",
+            "request": "launch",
+            "type": "lua-local",
+            "program": {
+                "command": "${workspaceFolder}/build/sdl"
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}/apps/app02",
+            "stopOnEntry": false,
+            "env": {
+                "PATH": "${env:PATH};${workspaceFolder};"
+            }
         }
     ]
 }
