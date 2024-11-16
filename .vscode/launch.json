@@ -77,6 +77,20 @@
             "env": {
                 "PATH": "${env:PATH};${workspaceFolder};"
             }
+        },
+        {
+            "name": "[cmake-build] app03 - Lua Console",
+            "request": "launch",
+            "type": "lua-local",
+            "program": {
+                "command": "${workspaceFolder}/build/sdl"
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}/apps/app03",
+            "stopOnEntry": false,
+            "env": {
+                "PATH": "${env:PATH};${workspaceFolder};"
+            }
         }
     ]
 }
