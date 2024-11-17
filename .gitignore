@@ -4,3 +4,7 @@
 # CLion
 /.idea
 /cmake-build-*
+
+# KDevelop
+/.kdev4
+/build-kdevelop
