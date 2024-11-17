@@ -4,9 +4,10 @@
 // Include the standard I/O library
 #include <stdio.h>
 
-// Include the standard library for random numbers (and seed the random number generator)
-#include <time.h>
+// Include the standard library for random numbers (and seed the random number
+// generator)
 #include <stdlib.h>
+#include <time.h>
 
 // Include for Lua
 
@@ -18,9 +19,9 @@
 
 // luajit OFF
 /*
+#include <lauxlib.h>
 #include <lua.h>
 #include <lualib.h>
-#include <lauxlib.h>
 */
 
 SDL_Renderer* renderer;
@@ -60,9 +61,10 @@ int GetTicks(lua_State* L)
 
 int InputPoint(lua_State* L)
 {
-    int ix, iy; // mouse position point
+    int    ix, iy; // mouse position point
     Uint32 mouseButtonState = SDL_GetMouseState(&ix, &iy);
-    int primaryButtonPressed = mouseButtonState & SDL_BUTTON(SDL_BUTTON_LEFT) ? 1 : 0;
+    int    primaryButtonPressed =
+        mouseButtonState & SDL_BUTTON(SDL_BUTTON_LEFT) ? 1 : 0;
     lua_pushinteger(L, ix);
     lua_pushinteger(L, iy);
     lua_pushboolean(L, primaryButtonPressed);
@@ -146,11 +148,10 @@ int main(int argc, char* argv[])
     }
 
     // Create a window
-    SDL_Window* window = SDL_CreateWindow("Pixlet app. (Lua+SDL)",
-                                          SDL_WINDOWPOS_UNDEFINED,
-                                          SDL_WINDOWPOS_UNDEFINED,
-                                          300, 300,
-                                          SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE | SDL_WINDOW_ALLOW_HIGHDPI);
+    SDL_Window* window = SDL_CreateWindow(
+        "Pixlet app. (Lua+SDL)", SDL_WINDOWPOS_UNDEFINED,
+        SDL_WINDOWPOS_UNDEFINED, 300, 300,
+        SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE | SDL_WINDOW_ALLOW_HIGHDPI);
     if (window == NULL)
     {
         printf("Window could not be created! SDL_Error: %s\n", SDL_GetError());
@@ -162,7 +163,8 @@ int main(int argc, char* argv[])
     renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
     if (renderer == NULL)
     {
-        printf("Renderer could not be created! SDL_Error: %s\n", SDL_GetError());
+        printf("Renderer could not be created! SDL_Error: %s\n",
+               SDL_GetError());
         SDL_DestroyWindow(window);
         SDL_Quit();
         return 1;
@@ -216,9 +218,11 @@ int main(int argc, char* argv[])
         {
             if (lua_pcall(L, 0, 1, 0) == LUA_OK)
             {
-                lua_pop(L, lua_gettop(L));
+                lua_pop(L, 1);
             }
         }
+        else
+            lua_pop(L, 1);
 
         //--------------------------------------------
 
