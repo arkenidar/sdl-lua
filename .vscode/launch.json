@@ -51,6 +51,20 @@
             "stopOnEntry": false
         },
         {
+            "name": "[cmake-build] multi - Lua Console",
+            "request": "launch",
+            "type": "lua-local",
+            "program": {
+                "command": "${workspaceFolder}/build/sdl"
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}/apps/multi",
+            "stopOnEntry": false,
+            "env": {
+                "PATH": "${env:PATH};${workspaceFolder};"
+            }
+        },
+        {
             "name": "[cmake-build] app01 - Lua Console",
             "request": "launch",
             "type": "lua-local",
