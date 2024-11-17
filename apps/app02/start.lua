@@ -1,9 +1,6 @@
-if os.getenv("LOCAL_LUA_DEBUGGER_VSCODE") == "1" then
-    -- launched through "lldebugger" (ms-vscode)
-    require("lldebugger").start()
-end
-
-require("utils")
+package.path = package.path .. ";../?.lua"
+require("common.draw")
+local Pointer = require("common.pointer")
 
 local position = { x = 20, y = 30 }
 function Draw()
@@ -27,3 +24,5 @@ end
 
 print("Hello, World!")
 print("Hello from Italy!")
+
+return { Draw = Draw }

@@ -1,7 +1,4 @@
----@diagnostic disable-next-line: deprecated
-Spread = unpack and unpack or table.unpack
-
-Pointer = {}
+local Pointer = {}
 function Pointer.process_input()
     local mx, my, down = InputPoint()
     -- position, x, y
@@ -17,10 +14,4 @@ function Pointer.process_input()
     end
 end
 
-function DrawRectangle(x, y, w, h)
-    for px = x, x + w - 1 do
-        for py = y, y + h - 1 do
-            DrawPoint(px, py)
-        end
-    end
-end
+return Pointer
