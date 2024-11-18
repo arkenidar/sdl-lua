@@ -2,11 +2,11 @@ package.path = package.path .. ";../?.lua"
 require("common.draw")
 
 function Draw()
-    SetDrawColor(0x00, 0xFF, 0x00)
-    DrawRectangle(50, 50, 100, 100)
+    DrawColor(Color.dark_grey)
+    DrawRectangle { 50, 50, 100, 100 }
 
-    SetDrawColor(0xFF, 0xFF, 0x00)
-    DrawCircle(50, 50, 40)
+    DrawColor(Color.grey)
+    DrawCircle({ 50, 50 }, 40)
 end
 
 return { Draw = Draw }
