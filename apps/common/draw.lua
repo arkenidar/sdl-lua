@@ -44,8 +44,9 @@ function RandomColor()
     return { math.random(0, 255), math.random(0, 255), math.random(0, 255) }
 end
 
-function DrawColor(color)
-    SetDrawColor(color[1], color[2], color[3])
+function DrawColor(color, alpha)
+    if alpha then alpha = math.floor(alpha * 255) end
+    DrawColorRGBA(color[1], color[2], color[3], alpha or color[4])
 end
 
 function RectangleFromCenterAndSize(center, size)

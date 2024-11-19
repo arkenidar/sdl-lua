@@ -40,14 +40,15 @@ int DrawPoint(lua_State* L)
     return 0;
 }
 
-int SetDrawColor(lua_State* L)
+int DrawColorRGBA(lua_State* L)
 {
     int r = luaL_checkinteger(L, 1);
     int g = luaL_checkinteger(L, 2);
     int b = luaL_checkinteger(L, 3);
+    int a = luaL_optinteger(L, 4, SDL_ALPHA_OPAQUE);
 
-    // printf("SetDrawColor(%d,%d,%d)\n", r, g, b);
-    SDL_SetRenderDrawColor(renderer, r, g, b, SDL_ALPHA_OPAQUE);
+    // printf("DrawColorRGBA(%d,%d,%d,%d)\n", r, g, b, a);
+    SDL_SetRenderDrawColor(renderer, r, g, b, a);
 
     return 0;
 }
@@ -103,11 +104,11 @@ int main(int argc, char* argv[])
     //----------------------------------
 
     // Push the pointer to function
-    lua_pushcfunction(L, SetDrawColor);
+    lua_pushcfunction(L, DrawColorRGBA);
 
     // Get the value on top of the stack
     // and set as a global, in this case is the function
-    lua_setglobal(L, "SetDrawColor");
+    lua_setglobal(L, "DrawColorRGBA");
 
     //----------------------------------
 
@@ -187,6 +188,11 @@ int main(int argc, char* argv[])
         SDL_Quit();
         return 1;
     }
+
+    // Set the blend mode to blend
+    SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
+
+    // Main loop
 
     // Main loop flag
     int quit = 0;
