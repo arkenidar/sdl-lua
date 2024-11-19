@@ -14,8 +14,12 @@ function Pointer.process_input()
     end
     -- screen borders handling
     -- for e.g. draw pointer checks
-    local screen_width, screen_height = WindowSize()
-    Pointer.screen_wh = { screen_width, screen_height }
+    if WindowSize then
+        local screen_width, screen_height = WindowSize()
+        Pointer.screen_wh = { screen_width, screen_height }
+    else
+        Pointer.screen_wh = nil
+    end
     if Pointer.screen_wh then
         local on_borders = Pointer.x == 0 or Pointer.y == 0
             or Pointer.x == (Pointer.screen_wh[1] - 1)
