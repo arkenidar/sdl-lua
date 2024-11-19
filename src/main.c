@@ -71,6 +71,15 @@ int InputPoint(lua_State* L)
     return 3;
 }
 
+int WindowSize(lua_State* L)
+{
+    int w, h;
+    SDL_GetWindowSize(SDL_GetWindowFromID(1), &w, &h);
+    lua_pushinteger(L, w);
+    lua_pushinteger(L, h);
+    return 2;
+}
+
 int main(int argc, char* argv[])
 {
     printf("Hello, SDL2!\n");
@@ -117,6 +126,15 @@ int main(int argc, char* argv[])
     // Get the value on top of the stack
     // and set as a global, in this case is the function
     lua_setglobal(L, "InputPoint");
+
+    //----------------------------------
+
+    // Push the pointer to function
+    lua_pushcfunction(L, WindowSize);
+
+    // Get the value on top of the stack
+    // and set as a global, in this case is the function
+    lua_setglobal(L, "WindowSize");
 
     //----------------------------------
 

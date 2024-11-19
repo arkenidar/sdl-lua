@@ -12,7 +12,6 @@ function Draw()
     local actionable_button_xywh = { 160, 50, 80, 40 }
     local flag_part_width, flag_part_height = 30, 50
 
-    Pointer.screen_wh = { 300, 300 }
     Pointer.process_input()
     -- update tricolor flag colors
     local click_inside_actionable_button = Pointer.click and

@@ -3,7 +3,8 @@
         "DrawPoint",
         "SetDrawColor",
         "InputPoint",
-        "GetTicks"
+        "GetTicks",
+        "WindowSize"
     ],
     "C_Cpp.clang_format_style": "file",
 }
