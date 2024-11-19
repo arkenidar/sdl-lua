@@ -12,6 +12,7 @@ function Draw()
     local actionable_button_xywh = { 160, 50, 80, 40 }
     local flag_part_width, flag_part_height = 30, 50
 
+    Pointer.screen_wh = { 300, 300 }
     Pointer.process_input()
     -- update tricolor flag colors
     local click_inside_actionable_button = Pointer.click and
@@ -41,6 +42,10 @@ function Draw()
     -- draw button
     DrawColor(Color.magenta)
     DrawRectangle(actionable_button_xywh)
+
+    if not Pointer.inside then
+        return -- skip drawing pointer
+    end
 
     -- draw pointer
     local squareSize = 20
