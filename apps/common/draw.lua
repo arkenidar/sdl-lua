@@ -66,6 +66,19 @@ function FromPointsToWidthHeight(point1, point2)
     return x_min, y_min, x_max - x_min, y_max - y_min
 end
 
+function DrawImage(image, area)
+    if not area then
+        area = { 0, 0, image.width, image.height }
+    end
+    for y = area[2], area[2] + area[4] - 1 do
+        for x = area[1], area[1] + area[3] - 1 do
+            local pixel = image.pixels[(y - area[2]) % image.height + 1][(x - area[1]) % image.width + 1]
+            DrawColor({ pixel.r, pixel.g, pixel.b, pixel.a })
+            DrawPoint(x, y)
+        end
+    end
+end
+
 Color = {
 
     black = { 0x00, 0x00, 0x00 },
