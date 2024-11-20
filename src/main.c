@@ -11,18 +11,22 @@
 
 // Include for Lua
 
-// minilua ON
+#ifdef _WIN32
+#define USE_MINILUA
+#else
+#define USE_LUAJIT
+#endif
+
+#ifdef USE_MINILUA
 #define LUA_IMPL
 #include "minilua.h"
+#endif
 
-// lua or luajit
-
-// luajit OFF
-/*
+#ifdef USE_LUAJIT
 #include <lauxlib.h>
 #include <lua.h>
 #include <lualib.h>
-*/
+#endif
 
 SDL_Renderer* renderer;
 

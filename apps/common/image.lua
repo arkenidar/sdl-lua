@@ -1,11 +1,21 @@
+local bit
+if jit then
+    --print("Running LuaJIT")
+    --print("LuaJIT version: " .. jit.version)
+    bit = require("bit")
+else
+    --print("Not running LuaJIT")
+    bit = require("common.bit_operations")
+end
+
 local function readInt32(str, pos)
     local b1, b2, b3, b4 = str:byte(pos, pos + 3)
-    return b1 + (b2 << 8) + (b3 << 16) + (b4 << 24)
+    return b1 + bit.lshift(b2, 8) + bit.lshift(b3, 16) + bit.lshift(b4, 24)
 end
 
 local function readInt16(str, pos)
     local b1, b2 = str:byte(pos, pos + 1)
-    return b1 + (b2 << 8)
+    return b1 + bit.lshift(b2, 8)
 end
 
 function ImageLoadBMP(filename)
@@ -82,9 +92,9 @@ function ImageLoadBMP(filename)
     local function getShiftAndMask(mask)
         if mask == 0 then return 0, 0 end
         local shift = 0
-        while (mask & 1) == 0 do
+        while bit.band(mask, 1) == 0 do
             shift = shift + 1
-            mask = mask >> 1
+            mask = bit.rshift(mask, 1)
         end
         return shift, mask
     end
@@ -105,15 +115,15 @@ function ImageLoadBMP(filename)
             if bitsPerPixel == 32 then
                 local pixel = readInt32(file:read(4), 1)
                 if compression == 3 then -- BI_BITFIELDS
-                    r = ((pixel & rMask) >> rShift) & rMaskNorm
-                    g = ((pixel & gMask) >> gShift) & gMaskNorm
-                    b = ((pixel & bMask) >> bShift) & bMaskNorm
-                    a = ((pixel & aMask) >> aShift) & aMaskNorm
+                    r = bit.band(bit.rshift(bit.band(pixel, rMask), rShift), rMaskNorm)
+                    g = bit.band(bit.rshift(bit.band(pixel, gMask), gShift), gMaskNorm)
+                    b = bit.band(bit.rshift(bit.band(pixel, bMask), bShift), bMaskNorm)
+                    a = bit.band(bit.rshift(bit.band(pixel, aMask), aShift), aMaskNorm)
                 else -- Standard BGRA
-                    b = pixel & 0xFF
-                    g = (pixel >> 8) & 0xFF
-                    r = (pixel >> 16) & 0xFF
-                    a = (pixel >> 24) & 0xFF
+                    b = bit.band(pixel, 0xFF)
+                    g = bit.band(bit.rshift(pixel, 8), 0xFF)
+                    r = bit.band(bit.rshift(pixel, 16), 0xFF)
+                    a = bit.band(bit.rshift(pixel, 24), 0xFF)
                 end
             elseif bitsPerPixel == 24 then
                 b, g, r = file:read(3):byte(1, 3)

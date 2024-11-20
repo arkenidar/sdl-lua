@@ -4,11 +4,26 @@ project(app_project VERSION 0.1 LANGUAGES C)
 add_executable(sdl "src/main.c")
 
 find_package(SDL2 REQUIRED)
+target_link_libraries(sdl PRIVATE ${SDL2_LIBRARIES} )
 
-if (WIN32)
-    target_link_libraries(sdl ${SDL2_LIBRARIES} m)
-endif (WIN32)
+# use LuaJIT ?
+if(NOT WIN32)
+# Find LuaJIT package
+find_package(PkgConfig REQUIRED)
+pkg_check_modules(LUAJIT REQUIRED luajit)
 
-if (UNIX)
-    target_link_libraries(sdl ${SDL2_LIBRARIES} m)
-endif (UNIX)
+# Include directories for LuaJIT
+target_include_directories(sdl PRIVATE ${LUAJIT_INCLUDE_DIRS})
+
+# Link against LuaJIT
+target_link_libraries(sdl PRIVATE ${LUAJIT_LIBRARIES})
+
+# Set compiler flags
+target_compile_options(sdl PRIVATE ${LUAJIT_CFLAGS_OTHER})
+endif()
+
+# If you're on Linux, you might need to link against these additional libraries
+if(UNIX AND NOT APPLE)
+    target_link_libraries(sdl PRIVATE dl m)
+endif()
+
