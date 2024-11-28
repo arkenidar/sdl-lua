@@ -153,6 +153,20 @@
             "env": {
                 "PATH": "${env:PATH};${workspaceFolder};"
             }
+        },
+        {
+            "name": "[cmake-build] graphic - Lua Console",
+            "request": "launch",
+            "type": "lua-local",
+            "program": {
+                "command": "${workspaceFolder}/build/sdl"
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}/apps/graphic",
+            "stopOnEntry": false,
+            "env": {
+                "PATH": "${env:PATH};${workspaceFolder};"
+            }
         }
     ]
 }
