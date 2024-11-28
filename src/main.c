@@ -11,11 +11,14 @@
 
 // Include for Lua
 
+/*
 #ifdef _WIN32
 #define USE_MINILUA
 #else
 #define USE_LUAJIT
 #endif
+*/
+#define USE_LUAJIT
 
 #ifdef USE_MINILUA
 #define LUA_IMPL
