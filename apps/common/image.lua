@@ -1,4 +1,5 @@
 local bit
+---@diagnostic disable-next-line: undefined-global
 if jit then
     --print("Running LuaJIT")
     --print("LuaJIT version: " .. jit.version)

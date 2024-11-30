@@ -6,7 +6,7 @@ local Images = {}
 Images.pattern = ImageLoadBMP("../assets/pattern.bmp")
 Images.flower = ImageLoadBMP("../assets/flower.bmp")
 
-function Draw()
+function Draw(dt)
     local window_width, window_height = WindowSize()
     local window_area = { 0, 0, window_width, window_height }
     DrawImage(Images.pattern, window_area)

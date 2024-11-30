@@ -8,7 +8,7 @@ local tricolor = {
     Color.white,
     Color.red,
 }
-function Draw()
+function Draw(dt)
     local actionable_button_xywh = { 160, 50, 80, 40 }
     local flag_part_width, flag_part_height = 30, 50
 
