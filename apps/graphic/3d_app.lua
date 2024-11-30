@@ -1,7 +1,7 @@
 ---@diagnostic disable: lowercase-global
 --require("lldebugger").start()
 
-require('algebra')
+require('graphic.algebra')
 
 s = 50        -- size
 
@@ -84,7 +84,7 @@ end
 triangles_original = convert_polygons_to_triangles(polygons_original)
 
 --*****************************************
-require("loader")
+require("graphic.loader")
 local file_path = "assets/stl-ascii-teapot-axes.stl"
 local vertices_bounds
 ---triangles_original= load_stl_file(file_path)
@@ -178,7 +178,7 @@ end
 
 degrees = 0.0
 
-local obj_cube = load_obj_file("assets/head.obj")
+local obj_cube = load_obj_file("../graphic/assets/head.obj")
 --obj_cube = {} -- WIP to simplify
 
 function update(dt)
