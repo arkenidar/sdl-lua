@@ -20,6 +20,13 @@ function Draw(dt)
 
     DrawColor(Color.red)
     DrawPoint(0, 0)
+
+    --DrawImage(Images.flower, { 50, 60, Images.flower.width, Images.flower.height })
+    function DrawImageSingle(name, x, y)
+        DrawImage(Images[name], { x, y, Images[name].width, Images[name].height })
+    end
+
+    DrawImageSingle('flower', 50 , 60)
 end
 
 return { Draw = Draw }
