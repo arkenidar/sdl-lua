@@ -9,5 +9,7 @@ CD "%this_dir%"
 
 SET ROOT_PATH=%this_dir%\..\..
 @SET PATH=%ROOT_PATH%;%PATH%
-START "console" "%ROOT_PATH%\sdl-lua-console"
+REM START "console" "%ROOT_PATH%\sdl-lua-console"
 REM PAUSE
+"%ROOT_PATH%\sdl-lua-console"
+pause
