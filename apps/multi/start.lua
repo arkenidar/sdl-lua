@@ -10,10 +10,17 @@ local app01 = require("app01.start")
 local app02 = require("app02.start")
 local app03 = require("app03.start")
 
+local graphic = require("graphic.start")
+
+require("common.deltatime")
+
 function Draw()
-    app01.Draw()
-    app02.Draw()
-    app03.Draw()
+    local dt = DeltaTime()
+    app01.Draw(dt)
+    app02.Draw(dt)
+    app03.Draw(dt)
+    
+    graphic.Draw(dt)
 end
 
 print("Hello from multi/start.lua")

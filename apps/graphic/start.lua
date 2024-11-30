@@ -2,7 +2,7 @@ package.path = package.path .. ";../?.lua"
 require("common.draw")
 require("common.deltatime")
 
-require("3d_app")
+require("graphic.3d_app")
 
 ---@diagnostic disable-next-line: lowercase-global
 function draw_pixel(rgb, xy)
@@ -10,8 +10,8 @@ function draw_pixel(rgb, xy)
   DrawPoint(xy[1], xy[2])
 end
 
-function Draw()
-  update(DeltaTime())
+function Draw(dt)
+  update(dt or DeltaTime())
   draw()
 end
 
