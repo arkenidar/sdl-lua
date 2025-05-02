@@ -1,5 +1,5 @@
-// Include the SDL2 library
-#include <SDL2/SDL.h>
+// Include the SDL3 library
+#include <SDL3/SDL.h>
 
 // Include the standard I/O library
 #include <stdio.h>
@@ -42,7 +42,7 @@ int DrawPoint(lua_State* L)
     int y = luaL_checkinteger(L, 2);
 
     // printf("DrawPoint(%d,%d)\n", x, y);
-    SDL_RenderDrawPoint(renderer, x, y);
+    SDL_RenderPoint(renderer, x, y);
 
     return 0;
 }
@@ -62,23 +62,23 @@ int DrawColorRGBA(lua_State* L)
 
 int GetTicks(lua_State* L)
 {
-    lua_Integer ticks = SDL_GetTicks64();
+    lua_Integer ticks = SDL_GetTicks();
     lua_pushinteger(L, ticks);
     return 1;
 }
 
+/*
 int InputPoint(lua_State* L)
 {
-    int    ix, iy; // mouse position point
+    int ix, iy; // mouse position point
     Uint32 mouseButtonState = SDL_GetMouseState(&ix, &iy);
-    int    primaryButtonPressed =
-        mouseButtonState & SDL_BUTTON(SDL_BUTTON_LEFT) ? 1 : 0;
+    int primaryButtonPressed = mouseButtonState & SDL_BUTTON(SDL_BUTTON_LEFT) ? 1 : 0;
     lua_pushinteger(L, ix);
     lua_pushinteger(L, iy);
     lua_pushboolean(L, primaryButtonPressed);
     return 3;
 }
-
+*/
 int WindowSize(lua_State* L)
 {
     int w, h;
@@ -90,7 +90,7 @@ int WindowSize(lua_State* L)
 
 int main(int argc, char* argv[])
 {
-    printf("Hello, SDL2!\n");
+    printf("Hello, SDL3!\n");
 
     // Initialize Lua
 
@@ -129,7 +129,7 @@ int main(int argc, char* argv[])
     //----------------------------------
 
     // Push the pointer to function
-    lua_pushcfunction(L, InputPoint);
+    //// lua_pushcfunction (L, InputPoint);
 
     // Get the value on top of the stack
     // and set as a global, in this case is the function
@@ -167,17 +167,15 @@ int main(int argc, char* argv[])
     srand(time(NULL));
 
     // Initialize SDL
-    if (SDL_Init(SDL_INIT_VIDEO) < 0)
+    if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_EVENTS) < 0)
     {
         printf("SDL could not initialize! SDL_Error: %s\n", SDL_GetError());
         return 1;
     }
 
     // Create a window
-    SDL_Window* window = SDL_CreateWindow(
-        "Pixlet app. (Lua+SDL)", SDL_WINDOWPOS_UNDEFINED,
-        SDL_WINDOWPOS_UNDEFINED, 300, 300,
-        SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE | SDL_WINDOW_ALLOW_HIGHDPI);
+    SDL_Window* window =
+        SDL_CreateWindow("Pixlet app. (Lua+SDL)", 300, 300, SDL_WINDOW_RESIZABLE | SDL_WINDOW_HIGH_PIXEL_DENSITY);
     if (window == NULL)
     {
         printf("Window could not be created! SDL_Error: %s\n", SDL_GetError());
@@ -186,11 +184,10 @@ int main(int argc, char* argv[])
     }
 
     // Create a renderer
-    renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+    renderer = SDL_CreateRenderer(window, "software");
     if (renderer == NULL)
     {
-        printf("Renderer could not be created! SDL_Error: %s\n",
-               SDL_GetError());
+        printf("Renderer could not be created! SDL_Error: %s\n", SDL_GetError());
         SDL_DestroyWindow(window);
         SDL_Quit();
         return 1;
@@ -214,17 +211,17 @@ int main(int argc, char* argv[])
         while (SDL_PollEvent(&e) != 0)
         {
             // User requests quit
-            if (e.type == SDL_QUIT)
+            if (e.type == SDL_EVENT_QUIT)
             {
                 quit = 1;
             }
 
             // User presses a key
-            else if (e.type == SDL_KEYDOWN)
+            else if (e.type == SDL_EVENT_KEY_DOWN)
             {
-                switch (e.key.keysym.sym)
+                switch (e.key.scancode)
                 {
-                case SDLK_ESCAPE:
+                case SDL_SCANCODE_ESCAPE:
                     quit = 1;
                     break;
                 }

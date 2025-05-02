@@ -4,9 +4,9 @@ project(app_project VERSION 0.1 LANGUAGES C)
 add_executable(sdl "src/main.c")
 add_executable(sdlw "src/main.c")
 
-find_package(SDL2 REQUIRED)
-target_link_libraries(sdl PRIVATE ${SDL2_LIBRARIES})
-target_link_libraries(sdlw PRIVATE ${SDL2_LIBRARIES})
+find_package(SDL3 REQUIRED)
+target_link_libraries(sdl PRIVATE ${SDL3_LIBRARIES})
+target_link_libraries(sdlw PRIVATE ${SDL3_LIBRARIES})
 
 # use LuaJIT ?
 if(NOT WIN32)
