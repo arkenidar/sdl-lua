@@ -1,6 +1,8 @@
-BasedOnStyle: GNU
+BasedOnStyle: Microsoft
 Language: C
 # Indentation settings
 IndentWidth: 4
 TabWidth: 4
 UseTab: Never
+PointerAlignment: Left
+
