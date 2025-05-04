@@ -2,11 +2,15 @@ cmake_minimum_required(VERSION 3.10)
 project(app_project VERSION 0.1 LANGUAGES C)
 
 add_executable(sdl "src/main.c")
+if(WIN32)
 add_executable(sdlw "src/main.c")
+endif()
 
 find_package(SDL3 REQUIRED)
 target_link_libraries(sdl PRIVATE ${SDL3_LIBRARIES})
+if(WIN32)
 target_link_libraries(sdlw PRIVATE ${SDL3_LIBRARIES})
+endif()
 
 # use LuaJIT ?
 if(NOT WIN32)
@@ -37,8 +41,10 @@ if(WIN32)
     # WARNING : when using this will not PRINT to stdout console !!! not good if debugging !
     # ### target_link_options( sdl PRIVATE -mwindows ) # uncomment for Windows (MinGW)
     target_link_libraries(sdl PRIVATE luajit-5.1.dll)
+    if(WIN32)
     target_link_libraries(sdlw PRIVATE luajit-5.1.dll)
     target_link_options( sdlw PRIVATE -mwindows ) # specific for sdlw.exe
+    endif()
 endif()
 
 # If you're on Linux, you might need to link against these additional libraries
