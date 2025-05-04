@@ -167,7 +167,7 @@ int main(int argc, char* argv[])
     srand(time(NULL));
 
     // Initialize SDL
-    if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_EVENTS) < 0)
+    if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_EVENTS) == false)
     {
         printf("SDL could not initialize! SDL_Error: %s\n", SDL_GetError());
         return 1;
@@ -223,6 +223,8 @@ int main(int argc, char* argv[])
                 {
                 case SDL_SCANCODE_ESCAPE:
                     quit = 1;
+                    break;
+                default:
                     break;
                 }
             }
